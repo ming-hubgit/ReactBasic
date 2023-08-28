@@ -1,24 +1,16 @@
-import React, { useState } from 'react';
+import React from "react";
+import Todo from "./Todo";
+import "./styles.css";
 
-import './styles.css';
+const DUMMY_TODOS = ["Learn React", "Practice React", "Profit!"];
 
 // don't change the Component name "App"
 export default function App() {
-  const [num, setNum] = useState(0);
-
-  const numPlusClickHandler = () => {
-    setNum(num + 1)
-  };
-
-  const numMinusClickHandler = () => {
-    setNum(num - 1)
-  };
-
-    return (
-      <div>
-        <p id="counter">{num}</p>
-        <button onClick={numPlusClickHandler}>+</button>
-        <button onClick={numMinusClickHandler}>-</button>
-      </div>
-    );
+  return (
+    <ul>
+      {DUMMY_TODOS.map((todo) => (
+        <Todo text={todo} />
+      ))}
+    </ul>
+  );
 }
