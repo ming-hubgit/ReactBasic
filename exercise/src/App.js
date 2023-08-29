@@ -1,16 +1,34 @@
-import React from "react";
-import Todo from "./Todo";
+import React, { useState } from "react";
 import "./styles.css";
 
-const DUMMY_TODOS = ["Learn React", "Practice React", "Profit!"];
-
 // don't change the Component name "App"
-export default function App() {
+function App() {
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  const deleteHandler = () => {
+    setIsDeleting(true);
+  };
+
+  const proceedHandler = () => {
+    setIsDeleting(false);
+  };
+
+  let warning = null;
+  if (isDeleting) {
+    warning = (
+      <div id="alert">
+        <h2>Are you sure?</h2>
+        <p>These changes can't be reverted!</p>
+        <button onClick={proceedHandler}>Proceed</button>
+      </div>
+    );
+  }
   return (
-    <ul>
-      {DUMMY_TODOS.map((todo) => (
-        <Todo text={todo} />
-      ))}
-    </ul>
+    <div>
+      {warning}
+      <button onClick={deleteHandler}>Delete</button>
+    </div>
   );
 }
+
+export default App;
